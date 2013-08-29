@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", hello)
+	http.HandleFunc("/", hang)
 	fmt.Println("listening...")
 	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 	if err != nil {
@@ -16,9 +16,10 @@ func main() {
 	}
 }
 
-func hello(res http.ResponseWriter, req *http.Request) {
+func hang(res http.ResponseWriter, req *http.Request) {
 	for {
-		fmt.Fprintln(res, " ")
-		time.Sleep(10 * time.Second)
+		fmt.Fprintln(res, "\n")
+		time.Sleep(5 * time.Second)
+		res.(http.Flusher).Flush()
 	}
 }
