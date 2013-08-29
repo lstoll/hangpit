@@ -17,6 +17,8 @@ func main() {
 }
 
 func hello(res http.ResponseWriter, req *http.Request) {
-	time.Sleep(60 * time.Minute)
-	fmt.Fprintln(res, "you're sure paitent")
+	for {
+		fmt.Fprintln(res, " ")
+		time.Sleep(10 * time.Second)
+	}
 }
